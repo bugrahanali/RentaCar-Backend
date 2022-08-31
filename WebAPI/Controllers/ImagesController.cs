@@ -7,11 +7,11 @@ namespace WebAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class ImageController: ControllerBase
+    public class ImagesController: ControllerBase
     {
         IImageService _imageService;
 
-        public ImageController(IImageService ImageService)
+        public ImagesController(IImageService ImageService)
         {
             _imageService = ImageService;
         }

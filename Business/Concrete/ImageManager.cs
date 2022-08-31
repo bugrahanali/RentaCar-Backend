@@ -1,4 +1,5 @@
 ﻿using Business.Abstract;
+using Core.Utilities.Helpers;
 using Core.Utilities.Results;
 using DataAccess.Abstract;
 using Entities.Concrete;
@@ -13,13 +14,16 @@ namespace Business.Concrete
     {
         IImageDal _imageDal;
 
+
         public ImageManager(IImageDal imageDal)
         {
             _imageDal = imageDal;
+
         }
 
         public IResult Add(IFormFile file, Image image)
         {
+            image.ImagePath = FileHelper.Add(file);
             _imageDal.Add(image);
             return new SuccessResult();
         }
