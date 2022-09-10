@@ -4,7 +4,7 @@ using System.Linq;
 using System.Security.Claims;
 using System.Text;
 
-namespace Core.Extentions
+namespace Core.Extensions
 {
     public static class ClaimsPrincipalExtensions
     {
@@ -20,4 +20,3 @@ namespace Core.Extentions
         }
     }
 }
-    

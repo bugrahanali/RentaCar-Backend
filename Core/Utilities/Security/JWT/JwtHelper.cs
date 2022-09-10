@@ -1,4 +1,5 @@
 ﻿using Core.Entities.Concrete;
+using Core.Extensions;
 using Core.Extentions;
 using Core.Utilities.Security.Encryption;
 using Microsoft.Extensions.Configuration;
@@ -47,7 +48,7 @@ namespace Core.Utilities.Security.JWT
                 issuer: tokenOptions.Issuer,
                 audience: tokenOptions.Audience,
                 expires: _accessTokenExpiration,
-                notBefore: DateTime.Now,
+                notBefore: DateTime.UtcNow,
                 claims: SetClaims(user, operationClaims),
                 signingCredentials: signingCredentials
             );

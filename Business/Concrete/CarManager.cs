@@ -1,5 +1,5 @@
 ﻿using Business.Abstract;
-using Business.Contants;
+using Business.Constans;
 using Business.ValidationRules.FluentValidation;
 using Core.Aspects.Autofac.Validation;
 using Core.CrossCuttingConcerns.Validation;
@@ -12,6 +12,7 @@ using FluentValidation;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using Business.BusinessAspects.Autofac;
 
 namespace Business.Concrete
 {
@@ -23,7 +24,7 @@ namespace Business.Concrete
             _carDal = carDal;
         }
 
-
+        //[SecuredOperation("car.add,admin")]
         [ValidationAspect(typeof(CarValidator))]
         public IResult Add(Car car)
         {
@@ -72,6 +73,8 @@ namespace Business.Concrete
             return new SuccessDataResult<List<Car>>(_carDal.GetAll(p => p.BrandId == ıd));
         }
 
+        
+
         public IDataResult<List<Car>> GetCarsByColorId(int ıd )
         {
             return new SuccessDataResult<List<Car>>(_carDal.GetAll(p => p.ColorId == ıd));
@@ -82,8 +85,24 @@ namespace Business.Concrete
             _carDal.Update(car);
             return new SuccessResult(Messages.CarUpdated);
         }
+
+
+        public IDataResult<List<CarDetailDto>> GetCarDetailByBrandId(int brandId)
+        {
+            return new SuccessDataResult<List<CarDetailDto>>(_carDal.GetCarDetailDtos(x => x.BrandId == brandId));
+        }
+
+
+        public IDataResult<List<CarDetailDto>> GetCarDetailByColorId(int colorId)
+        {
+            return new SuccessDataResult<List<CarDetailDto>>(_carDal.GetCarDetailDtos(x => x.ColorId == colorId));
+        }
+
+        public IDataResult<List<CarDetailDto>> GetCarDetailByCarId(int carId)
+        {
+            return new SuccessDataResult<List<CarDetailDto>>(_carDal.GetCarDetailDtos(c => c.CarId == carId));
+        }
         
-    
     }
 
 

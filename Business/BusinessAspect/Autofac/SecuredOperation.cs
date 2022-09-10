@@ -1,16 +1,18 @@
-﻿using System;
+﻿using Core.Utilities.Interceptors;
+using Microsoft.AspNetCore.Http;
+using System;
 using System.Collections.Generic;
 using System.Text;
-using Business.Contants;
 using Castle.DynamicProxy;
-using Core.Extentions;
-using Core.Utilities.Interceptors;
-using Core.Utilities.IOC;
-using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
+using Business.Constans;
+using Core.Extentions;
+using Core.Utilities.IOC;
+using Core.Extensions;
 
 namespace Business.BusinessAspects.Autofac
 {
+    //JWT
     public class SecuredOperation : MethodInterception
     {
         private string[] _roles;
@@ -28,6 +30,7 @@ namespace Business.BusinessAspects.Autofac
             var roleClaims = _httpContextAccessor.HttpContext.User.ClaimRoles();
             foreach (var role in _roles)
             {
+                
                 if (roleClaims.Contains(role))
                 {
                     return;

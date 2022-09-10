@@ -1,8 +1,8 @@
 ﻿using Business.Abstract;
-using Business.Contants;
+using Business.Constans;
 using Core.Utilities.Results;
 using DataAccess.Abstract;
-using Entities.Concrete;
+using Core.Entities.Concrete;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -33,6 +33,17 @@ namespace Business.Concrete
         public IDataResult<List<User>> GetAll()
         {
             return new SuccessDataResult<List<User>>(_userDal.GetAll(),Messages.UserListed);
+        }
+
+        public User GetByMail(string email)
+        {
+            return _userDal.Get(u => u.Email == email);
+        }
+
+        public IDataResult<List<OperationClaim>> GetClaims(User user)
+        {
+
+            return new SuccessDataResult<List<OperationClaim>>(_userDal.GetClaims(user));
         }
 
         public IResult Update(User user)

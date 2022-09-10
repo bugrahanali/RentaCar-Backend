@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Runtime.Serialization;
 using System.Text;
 
-namespace Business.Contants
+namespace Business.Constans
 {
     public static class Messages
     {
@@ -31,6 +31,12 @@ namespace Business.Contants
         public static string BrandListed="Markalar listelendi ";
         public static string CustomerListed = "Müşteriler listelendi ";
         public static string UserListed = "Kullanıcılar listelendi ";
-        public static string AuthorizationDenied;
+        public static string AuthorizationDenied="";
+        public static string PasswordError = "parola hatalı ";
+        public static string SuccessfulLogin = "giriş başarılı ";
+        public static string UserNotFound = " kullanıcı bulunamadı ";
+        public static string UserRegistered = "kullanıcı kayıt edildi ";
+        public static string UserAlreadyExists = "kullanıcı zaten var ";
+        public static string AccessTokenCreated = "kullanıcı tokenı oluşturuldu ";
     }
 }
